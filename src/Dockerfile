@@ -8,12 +8,12 @@ RUN apt-get update && apt-get -y install apt-transport-https ca-certificates \
     && apt-get update && apt-get -y install docker-engine bc patch\
     && curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose \
-    && wget https://shunit2.googlecode.com/files/shunit2-2.1.6.tgz -P /usr/local/src/ \
-    && tar zxvf /usr/local/src/shunit2-2.1.6.tgz -C /usr/local/src/ \ 
-    && wget https://storage.googleapis.com/google-code-attachments/shunit2/issue-16/comment-10/shunit-2.1.6-xml.patch -P /usr/local/src/  \
-    && patch -u -p1 -d /usr/local/src/shunit2-2.1.6 < /usr/local/src/shunit-2.1.6-xml.patch
+    && wget https://shunit2.googlecode.com/files/shunit2-2.1.6.tgz -P /usr/local/ \
+    && tar zxvf /usr/local/shunit2-2.1.6.tgz -C /usr/local/ \ 
+    && wget https://storage.googleapis.com/google-code-attachments/shunit2/issue-16/comment-10/shunit-2.1.6-xml.patch -P /usr/local/  \
+    && patch -u -p1 -d /usr/local/shunit2-2.1.6 < /usr/local/shunit-2.1.6-xml.patch
 
-ENV SHUNIT_HOME /usr/local/src/shunit2-2.1.6
+ENV SHUNIT_HOME /usr/local/shunit2-2.1.6
 
 COPY plugins.txt /usr/share/jenkins/ref/
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
